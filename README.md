@@ -1,4 +1,4 @@
-# App de músicas
+# App de músicas :musical_note:
 ### Requisitos 
   - Modelar objeto de bandas
   - Modelar objeto de músicas
