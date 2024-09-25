@@ -25,7 +25,7 @@ app.use(express.json());
 
 app.get("/health", (request, response) => {
     return response.json({
-        message: "Health changed 2",
+        message: "OK",
     });
 });
 
@@ -49,7 +49,7 @@ app.post("/bands", (request, response) => {
     const { name } = request.body;
 
     if (!name) {
-        return response.status(400).json({ error: "Nome não informado" });
+        return response.status(400).json({ error: "Name not given." });
     }
 
     bands.push({
@@ -59,7 +59,7 @@ app.post("/bands", (request, response) => {
         gender: "",
     });
 
-    return response.status(200).json({ message: "Band created succesfully" });
+    return response.status(200).json({ message: "Band created succesfully." });
 });
 
 app.delete("/bands/:id", (request, response) => {
@@ -68,12 +68,12 @@ app.delete("/bands/:id", (request, response) => {
     const findBandById = bands.findIndex((band) => band.id == id);
 
     if (findBandById === -1) {
-        return response.status(404).json({ message: "Banda não encontrada." });
+        return response.status(404).json({ message: "Band not found." });
     }
 
     bands = bands.filter((band) => band.id != id);
 
-    return response.status(200).json({ message: "Banda excluída com sucesso" });
+    return response.status(200).json({ message: "Band deleted successfully." });
 });
 
 app.post("/favorites", (request, response) => {
@@ -83,7 +83,7 @@ app.post("/favorites", (request, response) => {
     const bandAlreadyExists = favorites.some((band) => band.id == bandId);
 
     if (findBandById === -1) {
-        return response.status(404).json({ message: "Banda não encontrada." });
+        return response.status(404).json({ message: "Band not found." });
     }
 
     if (!bandAlreadyExists) {
@@ -100,7 +100,7 @@ app.post("/favorites", (request, response) => {
 
     return response
         .status(403)
-        .json({ message: "Banda já foi adicionada aos Favoritos." });
+        .json({ message: "Band has already been added to Favorites." });
 });
 
 app.delete("/favorites/:id", (request, response) => {
@@ -109,27 +109,27 @@ app.delete("/favorites/:id", (request, response) => {
     const findBandById = favorites.findIndex((band) => band.id == id);
 
     if (findBandById === -1) {
-        return response.status(404).json({ message: "Banda não encontrada." });
+        return response.status(404).json({ message: "Band not found." });
     }
 
     favorites = favorites.filter((band) => band.id != id);
 
     return response
         .status(200)
-        .json({ message: "Banda excluída dos Favoritos com sucesso" });
+        .json({ message: "Band successfully deleted from Favorites." });
 });
 
 app.post("/genders", (request, response) => {
     const { bandId, musicalGender } = request.body;
 
     if (!musicalGender) {
-        return response.status(400).json({ error: "O gênero é obrigatório" });
+        return response.status(400).json({ error: "Gender is required." });
     }
 
     const findBandById = bands.findIndex((band) => band.id == bandId);
 
     if (findBandById === -1) {
-        return response.status(404).json({ message: "Banda não encontrada." });
+        return response.status(404).json({ message: "Band not found." });
     }
 
     bands[findBandById].gender = musicalGender;
@@ -147,8 +147,7 @@ app.post("/genders", (request, response) => {
     genders = groupByGender(bands);
 
     return response.status(200).json({
-        message:
-            "Gênero adicionado à banda e banda(s) adicionada(s) à lista de gêneros",
+        message: "Genre added to band and band(s) added to genre list.",
     });
 });
 
@@ -156,15 +155,13 @@ app.post("/musics", (request, response) => {
     const { bandId, name } = request.body;
 
     if (!name) {
-        return response
-            .status(400)
-            .json({ error: "Nome da música é obrigatório" });
+        return response.status(400).json({ error: "Music name is required." });
     }
 
     const findBandById = bands.findIndex((band) => band.id == bandId);
 
     if (findBandById === -1) {
-        return response.status(404).json({ message: "Banda não encontrada." });
+        return response.status(404).json({ message: "Band not found." });
     }
 
     const allMusicIds = [];
@@ -197,16 +194,14 @@ app.post("/musics", (request, response) => {
 
     musics = groupByBand(bands);
 
-    return response.status(200).json({ message: "Music created succesfully" });
+    return response.status(200).json({ message: "Music created succesfully." });
 });
 
 app.post("/likes", (request, response) => {
     const { bandId, musicId } = request.body;
 
     if (!musicId) {
-        return response
-            .status(400)
-            .json({ error: "ID da música é obrigatório" });
+        return response.status(400).json({ error: "Music ID is required." });
     }
 
     const findBandById = bands.findIndex((band) => band.id == bandId);
@@ -215,13 +210,13 @@ app.post("/likes", (request, response) => {
     );
 
     if (findBandById === -1) {
-        return response.status(404).json({ message: "Banda não encontrada." });
+        return response.status(404).json({ message: "Band not found." });
     }
 
     bands[findBandById].musics[findMusicById].likes =
         bands[findBandById].musics[findMusicById].likes + 1;
 
-    return response.status(200).json({ message: "Like dado com sucesso." });
+    return response.status(200).json({ message: "Like given successfully." });
 });
 
 function getLastId(list) {
