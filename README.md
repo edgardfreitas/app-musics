@@ -1,17 +1,22 @@
 # App de músicas
-Requisitos
+### Requisitos 
   - Modelar objeto de bandas
   - Modelar objeto de músicas
 
-[x] Bandas
+### Bandas
   - [x] Adicionar bandas
   - [x] Listar bandas
   - [x] Remover bandas
-[x] Favoritos
+
+### Favoritos
   - [x] Listar bandas
   - [x] Remover bandas
-[x] Listar bandas por gêneros
-[x] Músicas
+
+### Gênero
+- [x] Adicionar gênero musical
+- [x] Listar bandas por gêneros
+
+### Músicas
   - [x] Listar músicas da banda
   - [x] Dar "like" na música
   - [x] Listar quantidade de likes daquela música
