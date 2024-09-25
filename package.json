@@ -1,0 +1,20 @@
+{
+    "name": "app-musics",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "dev:local": "nodemon src/server.js",
+        "start": "node src/server.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "Requisitos   - Modelar objeto de bandas   - Modelar objeto de músicas",
+    "dependencies": {
+        "express": "^4.21.0"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.4",
+        "typescript": "^5.6.2"
+    }
+}
