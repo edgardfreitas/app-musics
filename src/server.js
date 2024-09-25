@@ -213,6 +213,10 @@ app.post("/likes", (request, response) => {
         return response.status(404).json({ message: "Band not found." });
     }
 
+    if (findMusicById === -1) {
+        return response.status(404).json({ message: "Music not found." });
+    }
+
     bands[findBandById].musics[findMusicById].likes =
         bands[findBandById].musics[findMusicById].likes + 1;
 
